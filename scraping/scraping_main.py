@@ -14,3 +14,15 @@ def get_html(url):
     res = requests.get(url, headers=headers)
     return res
 
+
+url = "https://auctions.yahoo.co.jp/search/search?p=pt+デニム&va=pt+デニム&exflg=1&b=1&n=100"
+
+res = get_html(url)
+
+soup = bs(res.content, "html.parser")
+
+items = soup.findAll(class_="Product")
+
+url_list = [item.find(class_="Product__titleLink").get("href") for item in items]
+
+print(url_list)
