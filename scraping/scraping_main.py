@@ -1,8 +1,9 @@
-import pandas
-import requests
 from bs4 import BeautifulSoup as bs
-import re
 from fake_useragent import UserAgent
+import pandas
+import re
+import requests
+import time
 
 
 ua = UserAgent()
@@ -16,13 +17,18 @@ def get_html(url):
 
 
 url = "https://auctions.yahoo.co.jp/search/search?p=pt+デニム&va=pt+デニム&exflg=1&b=1&n=100"
+url_list = []
 
-res = get_html(url)
+# get products' url in 5 pages
+for _ in range(5):
+    res = get_html(url)
+    soup = bs(res.content, "html.parser")
+    items = soup.findAll(class_="Product")
+    url_list += [item.find(class_="Product__titleLink").get("href") for item in items]
 
-soup = bs(res.content, "html.parser")
+    url = soup.find(class_="Pager__list Pager__list--next").find("a").get("href")
+    time.sleep(5)
+    print(url)
+    print("*"*100)
 
-items = soup.findAll(class_="Product")
-
-url_list = [item.find(class_="Product__titleLink").get("href") for item in items]
-
-print(url_list)
+print(len(url_list))
