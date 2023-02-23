@@ -31,4 +31,15 @@ for _ in range(5):
     print(url)
     print("*"*100)
 
-print(len(url_list))
+detail_result = []
+for url in url_list:
+    res = get_html(url)
+    soup = bs(res.content, "html.parser")
+    detail_result.append(soup)
+    time.sleep(1)
+
+product_titles = []
+for detail in detail_result:
+    product_titles.append(detail.find(class_="ProductTitle__text").text)
+
+
