@@ -8,5 +8,10 @@ if __name__ == "__main__":
 
     source = get_source_from_page(driver, page)
 
-    info = get_data_from_source(source)
+    data = get_data_from_source(source)
+
+    driver.quit()
+
+    print(data)
+
 
