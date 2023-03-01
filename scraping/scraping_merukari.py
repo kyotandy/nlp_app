@@ -1,15 +1,16 @@
 from bs4 import BeautifulSoup as bs
 import traceback
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 CHROMEDRIVER = "/Users/kyota/git_repository/googlechrome.dmg"
 
 
 def get_driver():
-    options = Options()
+    options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    driver = webdriver.Chrome(CHROMEDRIVER, options=options)
+    service = Service(executable_path=CHROMEDRIVER)
+    driver = webdriver.Chrome(options=options)
     return driver
 
 
