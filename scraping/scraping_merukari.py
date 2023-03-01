@@ -28,9 +28,11 @@ def get_source_from_page(driver, page):
 
 def get_data_from_source(src):
     soup = bs(src, features='lxml')
+    print(soup.text)
     try:
         info = []
-        elems = soup.findAll(attrs={"data-test": "category-list-individual-box"})
+        elems = soup.findAll(class_="mer-list-item")
+        print(elems)
         for elem in elems:
             a_tag = elem.find("a")
 
