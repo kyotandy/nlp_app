@@ -28,7 +28,7 @@ def get_source_from_page(driver, page):
 
 def get_data_from_source(src):
     soup = bs(src, features='lxml')
-    print(soup.text)
+    print(soup)
     try:
         info = []
         elems = soup.findAll(class_="mer-list-item")
