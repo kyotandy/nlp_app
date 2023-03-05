@@ -6,4 +6,4 @@ classify the product category of the input words
 3. ...
 
 how to use
-download web driver from here<https://chromedriver.chromium.org/downloads>
+download web driver from https://chromedriver.chromium.org/downloads
