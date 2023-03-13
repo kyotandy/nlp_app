@@ -1,3 +1,6 @@
+# Installation
+- python ver
+
 # nlp_app
 classify the product category of the input words
 
